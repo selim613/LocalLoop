@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "965016630921",
+    "project_id": "localloop-49774",
+    "storage_bucket": "localloop-49774.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:965016630921:android:f520cce19019b54f3b7858",
+        "android_client_info": {
+          "package_name": "com.example.localloop"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDsStoBPhH6YxDDWAlllHf2CeVTs3U5B9s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
