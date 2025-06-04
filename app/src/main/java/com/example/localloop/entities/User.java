@@ -5,6 +5,7 @@ public abstract class User {
     protected String username;
     protected String role;
 
+
     // Constructor class
     public User(String name, String username, String role) {
         this.name = name;
