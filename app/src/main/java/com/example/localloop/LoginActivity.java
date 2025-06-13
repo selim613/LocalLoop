@@ -19,7 +19,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_welcome);
+        setContentView(R.layout.activity_login);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -38,15 +38,27 @@ public class LoginActivity extends AppCompatActivity {
     private void loginUser() {
         String email = emailInput.getText().toString().trim();
         String password = passwordInput.getText().toString().trim();
+        String firstName;
+        String role;
+        String welcomeMessage;
 
         // Checks if the input fields are valid (not empty)
         if (email.isEmpty() || password.isEmpty()) {
             Toast.makeText(this, "Please enter your credentials.", Toast.LENGTH_SHORT).show();
             return;
         } else if (email.equals("admin") && password.equals("t3st")) {  // *** change to XPI76SZUqyCjVxgnUjm0 later ***
-            // Implement later
             Toast.makeText(this, "Admin login successful!", Toast.LENGTH_SHORT).show();
-            // Create instance of user?
+
+            firstName = "admin";
+            role = "admin";
+            welcomeMessage = "Welcome " + firstName + "! You are logged in as \"" + role + "\".";
+            // System.out.println(welcomeMessage);
+
+            Intent intent = new Intent(this, WelcomeActivity.class);
+            intent.putExtra("welcomeMessage", welcomeMessage);
+            startActivity(intent);
+            finish();
+
             return;
         }
 
@@ -54,7 +66,7 @@ public class LoginActivity extends AppCompatActivity {
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         Toast.makeText(this, "Login successful!", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(this, MainActivity.class);
+                        Intent intent = new Intent(this, LoginActivity.class);
                         startActivity(intent);
                         finish();
                     } else {

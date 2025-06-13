@@ -1,22 +1,17 @@
 package com.example.localloop.entities;
 
-public abstract class User {
-    protected String name;
+// *** Look into making User abstract, and making Admin a singleton class ***
+public class User {
     protected String username;
     protected String role;
 
-
-    // Constructor class
-    public User(String name, String username, String role) {
-        this.name = name;
+    // Constructor for the user class, it is invoked upon a successful login
+    public User(String username, String role) {
         this.username = username;
         this.role = role;
     }
 
-    // Getters for the attributes
-    public String getName() {
-        return name;
-    }
+    // Getters
     public String getUsername() {
         return username;
     }
