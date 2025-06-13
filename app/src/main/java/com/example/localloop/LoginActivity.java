@@ -46,6 +46,7 @@ public class LoginActivity extends AppCompatActivity {
         } else if (email.equals("admin") && password.equals("t3st")) {  // *** change to XPI76SZUqyCjVxgnUjm0 later ***
             // Implement later
             Toast.makeText(this, "Admin login successful!", Toast.LENGTH_SHORT).show();
+            // Create instance of user?
             return;
         }
 
@@ -59,6 +60,7 @@ public class LoginActivity extends AppCompatActivity {
                     } else {
                         Toast.makeText(this, "Invalid email or password", Toast.LENGTH_SHORT).show();
                     }
+                    // Create instance of user?
                 });
     }
 }
