@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 
-public class WelcomeActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
     private EditText emailInput, passwordInput;
     private Button loginButton, createAccountButton;
@@ -39,8 +39,13 @@ public class WelcomeActivity extends AppCompatActivity {
         String email = emailInput.getText().toString().trim();
         String password = passwordInput.getText().toString().trim();
 
+        // Checks if the input fields are valid (not empty)
         if (email.isEmpty() || password.isEmpty()) {
-            Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please enter your credentials.", Toast.LENGTH_SHORT).show();
+            return;
+        } else if (email.equals("admin") && password.equals("t3st")) {  // *** change to XPI76SZUqyCjVxgnUjm0 later ***
+            // Implement later
+            Toast.makeText(this, "Admin login successful!", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -48,12 +53,11 @@ public class WelcomeActivity extends AppCompatActivity {
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         Toast.makeText(this, "Login successful!", Toast.LENGTH_SHORT).show();
-                        // TODO: Go to MainActivity
                         Intent intent = new Intent(this, MainActivity.class);
                         startActivity(intent);
                         finish();
                     } else {
-                        Toast.makeText(this, "Login failed: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(this, "Invalid email or password", Toast.LENGTH_SHORT).show();
                     }
                 });
     }

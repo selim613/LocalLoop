@@ -32,17 +32,17 @@ public class RegisterActivity extends AppCompatActivity {
         String password = passwordInput.getText().toString().trim();
 
         if (email.isEmpty() || password.isEmpty()) {
-            Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please enter valid credentials.", Toast.LENGTH_SHORT).show();
             return;
         }
 
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
+                        // *** Make this include the user's username later ***
                         Toast.makeText(this, "User registered successfully!", Toast.LENGTH_SHORT).show();
-                        // TODO: Go to LoginActivity or MainActivity
                     } else {
-                        Toast.makeText(this, "Registration failed: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(this, "Registration failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
     }
