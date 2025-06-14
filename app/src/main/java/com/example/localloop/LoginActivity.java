@@ -39,7 +39,7 @@ public class LoginActivity extends AppCompatActivity {
     private void loginUser() {
         String email = emailInput.getText().toString().trim();
         String password = passwordInput.getText().toString().trim();
-        String firstName;
+        String name;
         String role;
         String welcomeMessage;
 
@@ -50,11 +50,18 @@ public class LoginActivity extends AppCompatActivity {
         } else if (email.equals("admin") && password.equals("t3st")) {  // *** change to XPI76SZUqyCjVxgnUjm0 later ***
             Toast.makeText(this, "Admin login successful!", Toast.LENGTH_SHORT).show();
 
+            name = "Admin";
+            role = "Admin";
+            // *** Turn into method later ***
+            welcomeMessage = "Welcome " + name + "! You are logged in as " + role + ".";
+
             Intent intent = new Intent(this, AdminDashboardActivity.class);
+            intent.putExtra("welcomeMessage", welcomeMessage);
             startActivity(intent);
             finish();
             return;
         }
+
 
 
         mAuth.signInWithEmailAndPassword(email, password)

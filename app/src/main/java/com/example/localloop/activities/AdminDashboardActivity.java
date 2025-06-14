@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.localloop.R;
 import com.example.localloop.entities.Admin;
 import com.example.localloop.events.Category;
+import android.widget.TextView;
 
 public class AdminDashboardActivity extends AppCompatActivity {
 
@@ -14,9 +15,11 @@ public class AdminDashboardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_dashboard);
 
-        Category testCategory = new Category("Sports", "Competitive and recreational events");
+        String welcomeMessage = getIntent().getStringExtra("welcomeMessage");
+        TextView welcomeText = findViewById(R.id.textViewDashboardMessage);
+        welcomeText.setText(welcomeMessage);
 
-        // Log the category to confirm
+        Category testCategory = new Category("Sports", "Competitive and recreational events");
         Log.d("ADMIN_ACTION", "Created category: " + testCategory.getName() + " - " + testCategory.getDescription());
     }
 }
