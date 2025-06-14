@@ -10,13 +10,15 @@
         android:id="@+id/textViewDashboardMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Loading message..."
+        android:text="welcomeMessage"
         android:textSize="20sp"
         android:textStyle="bold"
+        android:fontFamily="sans-serif-thin"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:gravity="center"
         android:layout_marginTop="40dp"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
