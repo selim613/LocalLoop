@@ -13,8 +13,9 @@
         android:theme="@style/Theme.LocalLoop"
         tools:targetApi="31">
 
+        <activity android:name=".activities.AdminDashboardActivity" android:exported="true" />
         <activity android:name=".WelcomeActivity" android:exported="true" />
-
+        <activity android:name=".RegisterActivity" android:exported="true" />
         <activity
             android:name=".LoginActivity"
             android:exported="true">
@@ -24,8 +25,5 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".RegisterActivity" android:exported="true" />
-
     </application>
-
 </manifest>

@@ -16,10 +16,6 @@ public class WelcomeActivity extends AppCompatActivity {
         // *** Double check ***
         String welcomeMessage = getIntent().getStringExtra("welcomeMessage");
 
-        if (welcomeMessage == null || welcomeMessage.isEmpty()) {
-            welcomeMessage = "Welcome!";
-        }
-
         welcomeText.setText(welcomeMessage);
     }
 }

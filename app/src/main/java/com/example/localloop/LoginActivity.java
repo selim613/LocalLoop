@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import com.example.localloop.activities.AdminDashboardActivity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -49,18 +50,12 @@ public class LoginActivity extends AppCompatActivity {
         } else if (email.equals("admin") && password.equals("t3st")) {  // *** change to XPI76SZUqyCjVxgnUjm0 later ***
             Toast.makeText(this, "Admin login successful!", Toast.LENGTH_SHORT).show();
 
-            firstName = "admin";
-            role = "admin";
-            welcomeMessage = "Welcome " + firstName + "! You are logged in as \"" + role + "\".";
-            // System.out.println(welcomeMessage);
-
-            Intent intent = new Intent(this, WelcomeActivity.class);
-            intent.putExtra("welcomeMessage", welcomeMessage);
+            Intent intent = new Intent(this, AdminDashboardActivity.class);
             startActivity(intent);
             finish();
-
             return;
         }
+
 
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(task -> {

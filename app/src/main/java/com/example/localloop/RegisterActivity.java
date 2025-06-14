@@ -10,7 +10,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class RegisterActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
-    private EditText emailInput, passwordInput;
+    private EditText nameInput, emailInput, passwordInput;
     private Button registerButton;
 
     @Override
@@ -20,6 +20,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
+        nameInput = findViewById(R.id.editTextName);
         emailInput = findViewById(R.id.editTextEmail);
         passwordInput = findViewById(R.id.editTextPassword);
         registerButton = findViewById(R.id.buttonRegister);
@@ -28,10 +29,11 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void registerUser() {
+        String name = nameInput.getText().toString().trim();
         String email = emailInput.getText().toString().trim();
         String password = passwordInput.getText().toString().trim();
 
-        if (email.isEmpty() || password.isEmpty()) {
+        if (name.isEmpty() || email.isEmpty() || password.isEmpty()) {
             Toast.makeText(this, "Please enter valid credentials.", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -41,9 +43,15 @@ public class RegisterActivity extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         // *** Make this include the user's username later ***
                         Toast.makeText(this, "User registered successfully!", Toast.LENGTH_SHORT).show();
+                        // Toast.makeText(this, name + " " + email, Toast.LENGTH_SHORT).show();
                     } else {
                         Toast.makeText(this, "Registration failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
+    }
+
+    public String getName() {
+        //return Str(nameInput);
+        return " ";
     }
 }

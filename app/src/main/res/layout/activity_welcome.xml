@@ -12,7 +12,7 @@
         android:id="@+id/textViewWelcomeMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Welcome!"
+        android:text=""
         android:textSize="22sp"
         android:textColor="#333"
         android:textStyle="normal"
