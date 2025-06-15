@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class Category {
     private String name;
     private String description;
-    private static ArrayList<String> categories = new ArrayList<>();    // This will track all categories
+    private static ArrayList<String> categories = new ArrayList<>();    // This will track all categories, will be useful for error handling
 
     public Category(String name, String description) {
         this.name = name;
