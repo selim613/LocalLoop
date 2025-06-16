@@ -29,7 +29,7 @@ public class Home extends AppCompatActivity {
 
         // "Manage User Accounts" functionality
         Button buttonManageUserAccounts = findViewById(R.id.buttonManageUserAccounts);
-        manageCategoriesButton.setOnClickListener(v -> {
+        buttonManageUserAccounts.setOnClickListener(v -> {
             Intent intent = new Intent(this, ManageUserAccountsActivity.class);
             startActivity(intent);
         });
