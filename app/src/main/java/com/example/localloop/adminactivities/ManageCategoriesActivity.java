@@ -1,4 +1,4 @@
-package com.example.localloop.activities;
+package com.example.localloop.adminactivities;
 
 import android.content.Intent;
 import android.os.Bundle;

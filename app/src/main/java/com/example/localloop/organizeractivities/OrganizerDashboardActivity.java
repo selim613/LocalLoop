@@ -1,12 +1,10 @@
-package com.example.localloop.activities;
+package com.example.localloop.organizeractivities;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.localloop.R;
-import com.example.localloop.entities.Admin;
-import com.example.localloop.events.Category;
+
 import android.widget.TextView;
 
 public class OrganizerDashboardActivity extends AppCompatActivity {
