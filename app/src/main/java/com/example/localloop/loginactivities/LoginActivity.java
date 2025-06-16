@@ -1,11 +1,13 @@
-package com.example.localloop;
+package com.example.localloop.loginactivities;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-import com.example.localloop.adminactivities.AdminDashboardActivity;
+
+import com.example.localloop.R;
+import com.example.localloop.useractivities.adminactivities.Home;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.example.localloop.entities.Admin;
@@ -49,11 +51,13 @@ public class LoginActivity extends AppCompatActivity {
             Admin admin = new Admin("Admin","admin");
             welcomeMessage = createWelcomeMessage(admin.getName(), admin.getRole());
 
-            Intent intent = new Intent(this, AdminDashboardActivity.class);
+            Intent intent = new Intent(this, Home.class);
             intent.putExtra("welcomeMessage", welcomeMessage);
             startActivity(intent);
             finish();
             return;
+        } else {    // *** implement later ***
+            System.out.println("test");
         }
 
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
@@ -65,7 +69,7 @@ public class LoginActivity extends AppCompatActivity {
                     } else {
                         Toast.makeText(this, "Invalid email or password", Toast.LENGTH_SHORT).show();
                     }
-                    // Create instance of user?
+                    // *** Create instance of user? ***
                 });
     }
 

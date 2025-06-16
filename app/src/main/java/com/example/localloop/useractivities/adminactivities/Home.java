@@ -1,4 +1,4 @@
-package com.example.localloop.adminactivities;
+package com.example.localloop.useractivities.adminactivities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,7 +7,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.localloop.R;
 
-public class AdminDashboardActivity extends AppCompatActivity {
+public class Home extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

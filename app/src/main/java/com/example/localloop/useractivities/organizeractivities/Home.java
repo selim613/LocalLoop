@@ -1,4 +1,4 @@
-package com.example.localloop.organizeractivities;
+package com.example.localloop.useractivities.organizeractivities;
 
 import android.os.Bundle;
 
@@ -7,7 +7,7 @@ import com.example.localloop.R;
 
 import android.widget.TextView;
 
-public class OrganizerDashboardActivity extends AppCompatActivity {
+public class Home extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
