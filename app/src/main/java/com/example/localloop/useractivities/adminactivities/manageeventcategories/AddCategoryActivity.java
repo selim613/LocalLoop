@@ -1,4 +1,4 @@
-package com.example.localloop.useractivities.adminactivities;
+package com.example.localloop.useractivities.adminactivities.manageeventcategories;
 
 import android.os.Bundle;
 import android.widget.Button;
