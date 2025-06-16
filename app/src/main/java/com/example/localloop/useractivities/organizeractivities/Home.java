@@ -11,13 +11,11 @@ public class Home extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin_dashboard);
+        setContentView(R.layout.activity_organizer_dashboard);
 
         String welcomeMessage = getIntent().getStringExtra("welcomeMessage");
         TextView welcomeText = findViewById(R.id.textViewDashboardMessage);
         welcomeText.setText(welcomeMessage);
-
-
 
     }
 }
