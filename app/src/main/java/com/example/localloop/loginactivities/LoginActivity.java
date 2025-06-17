@@ -2,12 +2,13 @@ package com.example.localloop.loginactivities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.localloop.R;
 import androidx.appcompat.app.AppCompatActivity;
+import com.example.localloop.R;
 
 import com.example.localloop.entities.Organizer;
 import com.example.localloop.entities.Participant;
@@ -16,11 +17,11 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.example.localloop.entities.Admin;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 public class LoginActivity extends AppCompatActivity {
     private EditText emailInput, passwordInput;
     private FirebaseAuth mAuth;
-    // String[] userInfo = {"dqwd", "dqwdw"}; // userInfo[0] = name, userInfo[1] = role
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
         } else if (email.equals("admin") && password.equals("1")) {  // *** change to XPI76SZUqyCjVxgnUjm0 later ***
             Toast.makeText(this, "Admin login successful!", Toast.LENGTH_SHORT).show();
 
-            Admin admin = new Admin("Admin","admin");
+            Admin admin = new Admin("Admin", "admin");
             createWelcomeMessageIntent(admin);
             return;
         } else { // Either organizer or participant login, firebase firestore database will check the user role
@@ -60,25 +61,23 @@ public class LoginActivity extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     Toast.makeText(this, "Login successful!", Toast.LENGTH_SHORT).show();
 
-                    // Each instance of user contains all of the info (name, role, email)
                     FirebaseUser user = mAuth.getCurrentUser();
 
                     if (user != null) {
-                        // user.getUid() gets the ID for that specific instance of user
-                        String uid = user.getUid();
-                        // this method fetches all of the relevant info from firestore we want about the particular user
-                        fetchUID(uid);
+                        // Gets the user via their email as an identifier, since firebase authentication is using email + password
+                        fetchUserByEmail(user.getEmail(), new Helper() {
+                            @Override
+                            public void onUserFetched(User user1) {
+                                createWelcomeMessageIntent(user1);
+                            }
 
-                        /*User user1;
-                        if (userInfo[1].equals("Participant")) {
-                            user1 = new Participant(userInfo[0]);
-                        } else {
-                            user1 = new Organizer(userInfo[0]);
-                        }
-
-                         */
-                        //createWelcomeMessageIntent(name, role);
+                            @Override
+                            public void onError(String errorMessage) {
+                                Toast.makeText(LoginActivity.this, errorMessage, Toast.LENGTH_SHORT).show();
+                            }
+                        });
                     }
+
                 } else {
                     Toast.makeText(this, "Invalid email or password", Toast.LENGTH_SHORT).show();
                 }
@@ -86,24 +85,33 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    public void fetchUID(String uid) {
+    // Fetches the user's information (name and role) using their email as the access point
+    public void fetchUserByEmail(String email, Helper callback) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-        db.collection("users").document(uid).get()
-                .addOnSuccessListener(documentSnapshot -> {
-                    if (documentSnapshot.exists()) {
-                        String name = documentSnapshot.getString("Name");
-                        String role = documentSnapshot.getString("Role");
+        db.collection("users").whereEqualTo("Email", email).get().addOnSuccessListener(querySnapshot -> {
+            if (!querySnapshot.isEmpty()) {
+                for (QueryDocumentSnapshot doc : querySnapshot) {
+                    String name = doc.getString("Name");
+                    String role = doc.getString("Role");
+                    Log.d("DEBUGGG", "NAME: " + name + " ROLE: " + role);
 
-                        User user1;
-                        if ("Organizer".equals(role)) {
-                            user1 = new Organizer(name);
-                        } else {
-                            user1 = new Participant(name);
-                        }
-                        createWelcomeMessageIntent(user1);
+                    User user1;
+                    if ("Organizer".equals(role)) {
+                        user1 = new Organizer(name);
+                    } else {
+                        user1 = new Participant(name);
                     }
-                });
+
+                    callback.onUserFetched(user1);
+                    return; // Only process first match
+                }
+            } else {
+                callback.onError("No user found with this email.");
+            }
+        }).addOnFailureListener(e -> {
+            callback.onError("Error fetching user: " + e.getMessage());
+        });
     }
 
     public void createWelcomeMessageIntent(User user) {
@@ -125,7 +133,4 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
-
-
-
 }
