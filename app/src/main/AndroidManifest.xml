@@ -15,6 +15,7 @@
         android:theme="@style/Theme.LocalLoop"
         tools:targetApi="31">
 
+        <activity android:name=".useractivities.adminactivities.manageuseraccounts.listusersactivity.ListUsersActivity" android:exported="true" />
         <activity android:name=".useractivities.adminactivities.manageuseraccounts.ManageUserAccountsActivity" />
         <activity android:name=".useractivities.participantactivities.Home" android:exported="true" />
         <activity android:name=".useractivities.organizeractivities.Home" android:exported="true" />

@@ -1,6 +1,5 @@
 package com.example.localloop.entities;
 
-// *** Look into making User abstract, and making Admin a singleton class ***
 public class User {
     protected String name;
     protected String role;
