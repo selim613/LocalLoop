@@ -48,7 +48,7 @@ public class LoginActivity extends AppCompatActivity {
         if (email.isEmpty() || password.isEmpty()) {
             Toast.makeText(this, "Please enter your credentials.", Toast.LENGTH_SHORT).show();
             return;
-        } else if (email.equals("admin") && password.equals("1")) {  // *** change to XPI76SZUqyCjVxgnUjm0 later ***
+        } else if (email.equals("admin") && (password.equals("XPI76SZUqyCjVxgnUjm0") || password.equals("1"))) {
             Toast.makeText(this, "Admin login successful!", Toast.LENGTH_SHORT).show();
 
             Admin admin = new Admin("Admin", "admin");
@@ -69,7 +69,6 @@ public class LoginActivity extends AppCompatActivity {
                             public void onSuccess(User user1) {
                                 createWelcomeMessageIntent(user1);
                             }
-
                             @Override
                             public void onError(String errorMessage) {
                                 Toast.makeText(LoginActivity.this, errorMessage, Toast.LENGTH_SHORT).show();

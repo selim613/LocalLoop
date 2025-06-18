@@ -1,7 +1,6 @@
 package com.example.localloop.entities;
 
 public class Organizer extends User {
-
     public Organizer(String name) {
         super(name, "Organizer");
     }

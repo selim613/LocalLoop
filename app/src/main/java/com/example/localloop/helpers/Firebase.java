@@ -151,12 +151,10 @@ public class Firebase {
                 .addOnFailureListener(e -> callback.onError("Error finding category: " + e.getMessage()));
     }
 
-
     public interface CategoryListCallback {
         void onCategoryListFetched(List<Map<String, String>> categories);
         void onError(String error);
     }
-
 
     public interface UserListCallback {
         void onUserListFetched(List<Map<String, String>> users);

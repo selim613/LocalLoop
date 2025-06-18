@@ -7,14 +7,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.AlertDialog;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-
+import android.widget.TextView;
 import android.widget.Toast;
+
 import java.util.List;
 import java.util.Map;
 import com.example.localloop.R;
 import com.example.localloop.helpers.*;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 public class ManageCategoriesActivity extends AppCompatActivity {
     @Override
@@ -136,7 +135,6 @@ public class ManageCategoriesActivity extends AppCompatActivity {
                                 }).setNeutralButton("Cancel", null).show();
                     });
                     categoryListLayout.addView(categoryView);
-                    // categoryListLayout.addView(Divider.create(ManageCategoriesActivity.this));
                 }
 
             }

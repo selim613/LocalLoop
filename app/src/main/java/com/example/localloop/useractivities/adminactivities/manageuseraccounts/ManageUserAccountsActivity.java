@@ -58,18 +58,14 @@ public class ManageUserAccountsActivity extends AppCompatActivity {
                                             Toast.makeText(ManageUserAccountsActivity.this, "User deleted.", Toast.LENGTH_SHORT).show();
                                             userListContainer.removeView(textViewUserInfo);
                                         }
-
                                         @Override
                                         public void onError(String errorMessage) {
                                             Toast.makeText(ManageUserAccountsActivity.this, errorMessage, Toast.LENGTH_SHORT).show();
                                         }
                                     });
                                 })
-                                .setNegativeButton("Cancel", null)
-                                .show();
-                    });
-
-                    userListContainer.addView(textViewUserInfo);
+                                .setNeutralButton("Cancel", null).show();
+                    });userListContainer.addView(textViewUserInfo);
                 }
             }
 
