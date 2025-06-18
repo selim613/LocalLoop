@@ -2,9 +2,11 @@ package com.example.localloop.useractivities.adminactivities.manageeventcategori
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
+import android.app.AlertDialog;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 
 import android.widget.Toast;
 import java.util.List;
@@ -68,13 +70,53 @@ public class ManageCategoriesActivity extends AppCompatActivity {
                         new android.app.AlertDialog.Builder(ManageCategoriesActivity.this).setTitle("Manage Category")
                                 .setMessage("What do you want to do with \"" + name + "\"?")
                                 .setPositiveButton("Edit", (dialog, which) -> {
-                                    // edit functionality
+                                    // The alert has 2 editText's for the name category name and description
+                                    LinearLayout layout = new LinearLayout(ManageCategoriesActivity.this);
+                                    layout.setOrientation(LinearLayout.VERTICAL);
+                                    layout.setPadding(48, 24, 48, 0);
+
+                                    EditText inputName = new EditText(ManageCategoriesActivity.this);
+                                    inputName.setHint("New Category Name");
+                                    layout.addView(inputName);
+
+                                    EditText inputDescription = new EditText(ManageCategoriesActivity.this);
+                                    inputDescription.setHint("New Category Description");
+                                    layout.addView(inputDescription);
+
+                                    new AlertDialog.Builder(ManageCategoriesActivity.this).setTitle("Edit Category")
+                                            .setView(layout)
+                                            .setPositiveButton("Submit", (editDialog, whichEdit) -> {
+                                                String newName = inputName.getText().toString().trim();
+                                                String newDescription = inputDescription.getText().toString().trim();
+
+                                                if (newName.isEmpty() || newDescription.isEmpty()) {
+                                                    Toast.makeText(ManageCategoriesActivity.this, "Both fields are required.", Toast.LENGTH_SHORT).show();
+                                                    return;
+                                                }
+
+                                                // editCategory in the Firebase helper class is responsible for editing the category fields
+                                                Firebase.editCategory(name, newName, newDescription, new Firebase.FirebaseCallback() {
+                                                    @Override
+                                                    public void onSuccess() {
+                                                        Toast.makeText(ManageCategoriesActivity.this, "Category updated.", Toast.LENGTH_SHORT).show();
+                                                        recreate();
+                                                    }
+
+                                                    @Override
+                                                    public void onError(String error) {
+                                                        Toast.makeText(ManageCategoriesActivity.this, error, Toast.LENGTH_SHORT).show();
+                                                    }
+                                                });
+                                            })
+                                            .setNegativeButton("Cancel", null)
+                                            .show();
                                 }).setNegativeButton("Delete", (dialog, which) -> {
                                     categoryView.post(() -> {
                                         new android.app.AlertDialog.Builder(ManageCategoriesActivity.this)
                                                 .setTitle("Confirm Delete")
                                                 .setMessage("Are you sure you want to delete \"" + name + "\" from event categories?")
                                                 .setPositiveButton("Yes", (confirmDialog, confirmWhich) -> {
+                                                    // deleteCategory in the Firebase helper class is responsible for deleting a specific category
                                                     Firebase.deleteCategory(name, new Firebase.FirebaseCallback() {
                                                         @Override
                                                         public void onSuccess() {

@@ -32,7 +32,7 @@ public class Firebase {
         return db;
     }
 
-    // Fetches the user's information (name and role) using their email as the access point
+    // Fetches the user's information (name and role) using their email as the access point, used during login
     public static void fetchUserByEmail(String email, UserFetchCallback callback) {
         db.collection("users").whereEqualTo("Email", email).get().addOnSuccessListener(querySnapshot -> {
             if (!querySnapshot.isEmpty()) {
@@ -98,7 +98,6 @@ public class Firebase {
         });
     }
 
-    // Fetches all of the categories from the "categories" collection on the firestore database
     public static void fetchAllCategories(CategoryListCallback callback) {
         db.collection("categories").get().addOnSuccessListener(querySnapshot -> {
             List<Map<String, String>> categoryList = new ArrayList<>();
@@ -131,6 +130,27 @@ public class Firebase {
                     callback.onError("Error searching for category: " + e.getMessage());
                 });
     }
+
+    public static void editCategory(String oldName, String newName, String newDescription, FirebaseCallback callback) {
+        db.collection("categories").whereEqualTo("Name", oldName).get()
+                .addOnSuccessListener(querySnapshot -> {
+                    if (!querySnapshot.isEmpty()) {
+                        for (QueryDocumentSnapshot doc : querySnapshot) {
+                            Map<String, Object> updates = new HashMap<>();
+                            updates.put("Name", newName);
+                            updates.put("Description", newDescription);
+
+                            doc.getReference().update(updates)
+                                    .addOnSuccessListener(aVoid -> callback.onSuccess())
+                                    .addOnFailureListener(e -> callback.onError("Update failed: " + e.getMessage()));
+                        }
+                    } else {
+                        callback.onError("Category not found.");
+                    }
+                })
+                .addOnFailureListener(e -> callback.onError("Error finding category: " + e.getMessage()));
+    }
+
 
     public interface CategoryListCallback {
         void onCategoryListFetched(List<Map<String, String>> categories);
