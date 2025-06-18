@@ -1,4 +1,4 @@
-package com.example.localloop.useractivities.adminactivities.manageeventcategories;
+package com.example.localloop.useractivities.adminactivities.manageeventcategories.addcategory;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +8,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.localloop.R;
+import com.example.localloop.useractivities.adminactivities.manageeventcategories.ManageCategoriesActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 

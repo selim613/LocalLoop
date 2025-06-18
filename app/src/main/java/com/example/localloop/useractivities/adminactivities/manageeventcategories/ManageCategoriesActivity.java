@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Map;
 import com.example.localloop.R;
 import com.example.localloop.helpers.*;
+import com.example.localloop.useractivities.adminactivities.manageeventcategories.addcategory.AddCategoryActivity;
 
 public class ManageCategoriesActivity extends AppCompatActivity {
     @Override

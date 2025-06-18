@@ -5,11 +5,6 @@ public class Admin extends User {
         super(name,"admin");
     }
 
-    // *** Implement for Deliverable 3 ***
-    public void addCategory() {
-
-    }
-
     @Override
     public String getName() {
         return super.getName();
