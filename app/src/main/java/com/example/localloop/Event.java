@@ -19,10 +19,6 @@ public class Event {
         MAX_PARTICIPANTS = maxParticipants;
     }
 
-    public int getNumParticipants() {
-
-    }
-
     public void addParticipant() {
 
     }
