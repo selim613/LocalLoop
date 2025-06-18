@@ -2,6 +2,7 @@ package com.example.localloop.useractivities.adminactivities.manageeventcategori
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -67,16 +68,33 @@ public class ManageCategoriesActivity extends AppCompatActivity {
                         new android.app.AlertDialog.Builder(ManageCategoriesActivity.this).setTitle("Manage Category")
                                 .setMessage("What do you want to do with \"" + name + "\"?")
                                 .setPositiveButton("Edit", (dialog, which) -> {
-                                    // edit functionality, get firebase helper?
+                                    // edit functionality
                                 }).setNegativeButton("Delete", (dialog, which) -> {
-                                    // delete fucntionality """"""""
-                                })
-                                .setNeutralButton("Cancel", null)
-                                .show();
-                    });
+                                    categoryView.post(() -> {
+                                        new android.app.AlertDialog.Builder(ManageCategoriesActivity.this)
+                                                .setTitle("Confirm Delete")
+                                                .setMessage("Are you sure you want to delete \"" + name + "\" from event categories?")
+                                                .setPositiveButton("Yes", (confirmDialog, confirmWhich) -> {
+                                                    Firebase.deleteCategory(name, new Firebase.FirebaseCallback() {
+                                                        @Override
+                                                        public void onSuccess() {
+                                                            Toast.makeText(ManageCategoriesActivity.this, "Category deleted.", Toast.LENGTH_SHORT).show();
+                                                            categoryListLayout.removeView(categoryView);
+                                                        }
 
+                                                        @Override
+                                                        public void onError(String error) {
+                                                            Toast.makeText(ManageCategoriesActivity.this, error, Toast.LENGTH_SHORT).show();
+                                                        }
+                                                    });
+                                                })
+                                                .setNegativeButton("No", null)
+                                                .show();
+                                    });
+                                }).setNeutralButton("Cancel", null).show();
+                    });
                     categoryListLayout.addView(categoryView);
-                    categoryListLayout.addView(Divider.create(ManageCategoriesActivity.this));
+                    // categoryListLayout.addView(Divider.create(ManageCategoriesActivity.this));
                 }
 
             }

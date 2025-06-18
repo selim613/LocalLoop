@@ -114,6 +114,24 @@ public class Firebase {
         });
     }
 
+    public static void deleteCategory(String name, FirebaseCallback callback) {
+        db.collection("categories").whereEqualTo("Name", name).get()
+                .addOnSuccessListener(querySnapshot -> {
+                    if (!querySnapshot.isEmpty()) {
+                        for (QueryDocumentSnapshot doc : querySnapshot) {
+                            doc.getReference().delete()
+                                    .addOnSuccessListener(aVoid -> callback.onSuccess())
+                                    .addOnFailureListener(e -> callback.onError("Error deleting category: " + e.getMessage()));
+                        }
+                    } else {
+                        callback.onError("No category found with name: " + name);
+                    }
+                })
+                .addOnFailureListener(e -> {
+                    callback.onError("Error searching for category: " + e.getMessage());
+                });
+    }
+
     public interface CategoryListCallback {
         void onCategoryListFetched(List<Map<String, String>> categories);
         void onError(String error);
@@ -122,6 +140,11 @@ public class Firebase {
 
     public interface UserListCallback {
         void onUserListFetched(List<Map<String, String>> users);
+        void onError(String error);
+    }
+
+    public interface FirebaseCallback {
+        void onSuccess();
         void onError(String error);
     }
 }

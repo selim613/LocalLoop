@@ -1,5 +1,6 @@
 package com.example.localloop.useractivities.adminactivities.manageeventcategories;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -48,6 +49,22 @@ public class AddCategoryActivity extends AppCompatActivity {
             }
 
             // Category category = new Category(name, description);
+            Map<String, String> categoryMap = new HashMap<>();
+            categoryMap.put("Name", name);
+            categoryMap.put("Description", description);
+
+            FirebaseFirestore.getInstance()
+                    .collection("categories").add(categoryMap)
+                    .addOnSuccessListener(documentReference -> {
+                        Toast.makeText(this, "Category added successfully!", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(this, ManageCategoriesActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);    // This is so the previous outdated page isn't shown
+                        startActivity(intent);
+                        finish();
+                    })
+                    .addOnFailureListener(e -> {
+                        Toast.makeText(this, "Failed to add category: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    });
         });
     }
 }
