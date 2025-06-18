@@ -74,19 +74,13 @@ public class RegisterActivity extends AppCompatActivity {
                 user.put("Role", role);
                 user.put("Email", email);
 
-                // Add a new document with a generated ID
-                db.collection("users").add(user).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Toast.makeText(getApplicationContext(), "Added with ID: " + documentReference.getId(), Toast.LENGTH_SHORT).show();
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(getApplicationContext(), "Error adding document: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                });
-
+                db.collection("users").add(user)
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(getApplicationContext(), "Error adding document: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        });
             } else {
                 Toast.makeText(this, "Registration failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
             }
