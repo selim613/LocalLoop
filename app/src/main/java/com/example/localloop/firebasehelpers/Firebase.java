@@ -80,9 +80,29 @@ public class Firebase {
         });
     }
 
+    public static void deleteUser(String email, UserFetchCallback callback) {
+        db.collection("users").whereEqualTo("Email", email).get().addOnSuccessListener(querySnapshot -> {
+            if (!querySnapshot.isEmpty()) {
+                for (QueryDocumentSnapshot doc : querySnapshot) {
+                    String docId = doc.getId();
+                    db.collection("users").document(docId).delete().addOnSuccessListener(aVoid -> {
+                        callback.onSuccess(null);
+                    }).addOnFailureListener(e -> {
+                        callback.onError("Error deleting user: " + e.getMessage());
+                    });
+                    break;
+                }
+            } else {
+                callback.onError("No user found with email: " + email);
+            }
+        }).addOnFailureListener(e -> {
+            callback.onError("Error finding user: " + e.getMessage());
+        });
+    }
+
+
     public interface UserListCallback {
         void onUserListFetched(List<Map<String, String>> users);
         void onError(String error);
     }
-
 }

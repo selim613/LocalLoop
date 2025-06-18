@@ -7,6 +7,7 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.localloop.R;
+import com.example.localloop.useractivities.adminactivities.manageuseraccounts.deleteordisable.DeleteOrDisableActivity;
 import com.example.localloop.useractivities.adminactivities.manageuseraccounts.listusersactivity.ListUsersActivity;
 
 public class ManageUserAccountsActivity extends AppCompatActivity {
@@ -24,8 +25,8 @@ public class ManageUserAccountsActivity extends AppCompatActivity {
         });
 
         buttonDeleteOrDisableUser.setOnClickListener(v -> {
-            //Intent intent = new Intent(this, """".class);
-            //startActivity(intent);
+            Intent intent = new Intent(this, DeleteOrDisableActivity.class);
+            startActivity(intent);
         });
     }
 

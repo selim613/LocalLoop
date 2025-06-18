@@ -33,12 +33,12 @@ public class ListUsersActivity extends AppCompatActivity {
                     android.widget.TextView textViewEmail = new android.widget.TextView(ListUsersActivity.this);
                     android.widget.TextView textViewRole = new android.widget.TextView(ListUsersActivity.this);
 
-                    textViewName.setText("Name: " + user.get("Name"));
+                    textViewName.setText("Name: " + user.get("Name") + "\nEmail: " + user.get("Email") + "\nRole: " + user.get("Role"));
                     textViewName.setTextSize(16);
                     textViewName.setPadding(16, 16, 16, 16);
                     userListContainer.addView(textViewName);
 
-                    textViewEmail.setText("Email: " + user.get("Email"));
+                    /*textViewEmail.setText("Email: " + user.get("Email"));
                     textViewEmail.setTextSize(16);
                     textViewEmail.setPadding(16, 16, 16, 16);
                     userListContainer.addView(textViewEmail);
@@ -46,7 +46,7 @@ public class ListUsersActivity extends AppCompatActivity {
                     textViewRole.setText("Role: " + user.get("Role"));
                     textViewRole.setTextSize(16);
                     textViewRole.setPadding(16, 16, 16, 16);
-                    userListContainer.addView(textViewRole);
+                    userListContainer.addView(textViewRole);*/
 
                     // After every user, a divider is shown to help separate information between different users
                     View divider = new View(ListUsersActivity.this);

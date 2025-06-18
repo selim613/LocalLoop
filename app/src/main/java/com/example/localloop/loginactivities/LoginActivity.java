@@ -63,7 +63,6 @@ public class LoginActivity extends AppCompatActivity {
                     FirebaseUser user = mAuth.getCurrentUser();
 
                     if (user != null) {
-                        // 🔄 Replaced the old inline method with centralized Firebase class method
                         // Gets the user via their email as an identifier, since firebase authentication is using email + password
                         Firebase.fetchUserByEmail(user.getEmail(), new Firebase.UserFetchCallback() {
                             @Override
