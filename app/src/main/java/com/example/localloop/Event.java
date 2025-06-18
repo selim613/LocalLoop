@@ -6,8 +6,9 @@ public class Event {
     private String category;
     private String dataAndTime;
     private String location;
-    private int numParticipants;
-    private final int MAX_PARTICIPANTS;  // Set later
+    private final int MAX_PARTICIPANTS;
+
+    // Create class variable of type list to store event instances
 
     public Event(String title, String description, String category, String dataAndTime, String location, int maxParticipants) {
         this.title = title;
@@ -19,9 +20,10 @@ public class Event {
     }
 
     public int getNumParticipants() {
-        return numParticipants;
+
     }
-    public void manageParticipants() {
+
+    public void addParticipant() {
 
     }
 
