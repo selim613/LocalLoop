@@ -41,7 +41,8 @@ public class DeleteOrDisableActivity extends AppCompatActivity {
                     userView.setText("Name: " + name + "\nEmail: " + email + "\nRole: " + role);
                     userView.setPadding(24, 24, 24, 24);
                     userView.setTextSize(16f);
-                    userView.setBackgroundColor(Color.parseColor("#EEEEEE"));
+                    userView.setTextColor(Color.BLACK);    // Black text
+                    userView.setBackgroundColor(Color.parseColor("#EEEEEE"));  // Light grey text
 
                     LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                             ViewGroup.LayoutParams.MATCH_PARENT,

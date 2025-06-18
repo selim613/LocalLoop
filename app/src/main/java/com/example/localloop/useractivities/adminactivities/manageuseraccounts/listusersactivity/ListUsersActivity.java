@@ -3,8 +3,6 @@ package com.example.localloop.useractivities.adminactivities.manageuseraccounts.
 import android.os.Bundle;
 import android.widget.LinearLayout;
 import android.widget.Toast;
-import android.view.View;
-import androidx.core.content.ContextCompat;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.localloop.R;
@@ -28,23 +26,12 @@ public class ListUsersActivity extends AppCompatActivity {
                     Map<String, String> user = users.get(x);
                     // Log.d("TEST LIST", user.get("Name") + user.get("Email") + user.get("Role"));
 
-                    // *** Change name later ***
-                    android.widget.TextView textViewName = new android.widget.TextView(ListUsersActivity.this);
+                    android.widget.TextView textViewUserInfo = new android.widget.TextView(ListUsersActivity.this);
 
-                    textViewName.setText("Name: " + user.get("Name") + "\nEmail: " + user.get("Email") + "\nRole: " + user.get("Role"));
-                    textViewName.setTextSize(16);
-                    textViewName.setPadding(16, 16, 16, 16);
-                    userListContainer.addView(textViewName);
-
-                    /*textViewEmail.setText("Email: " + user.get("Email"));
-                    textViewEmail.setTextSize(16);
-                    textViewEmail.setPadding(16, 16, 16, 16);
-                    userListContainer.addView(textViewEmail);
-
-                    textViewRole.setText("Role: " + user.get("Role"));
-                    textViewRole.setTextSize(16);
-                    textViewRole.setPadding(16, 16, 16, 16);
-                    userListContainer.addView(textViewRole);*/
+                    textViewUserInfo.setText("Name: " + user.get("Name") + "\nEmail: " + user.get("Email") + "\nRole: " + user.get("Role"));
+                    textViewUserInfo.setTextSize(16);
+                    textViewUserInfo.setPadding(16, 16, 16, 16);
+                    userListContainer.addView(textViewUserInfo);
 
                     // After every user, a divider is shown to help separate information between different users
                     userListContainer.addView(Divider.create(ListUsersActivity.this));

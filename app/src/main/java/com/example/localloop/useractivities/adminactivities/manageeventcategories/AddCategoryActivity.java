@@ -48,8 +48,6 @@ public class AddCategoryActivity extends AppCompatActivity {
             }
 
             // Category category = new Category(name, description);
-
-            // here??
         });
     }
 }

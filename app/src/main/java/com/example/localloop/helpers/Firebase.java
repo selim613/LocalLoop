@@ -98,6 +98,27 @@ public class Firebase {
         });
     }
 
+    // Fetches all of the categories from the "categories" collection on the firestore database
+    public static void fetchAllCategories(CategoryListCallback callback) {
+        db.collection("categories").get().addOnSuccessListener(querySnapshot -> {
+            List<Map<String, String>> categoryList = new ArrayList<>();
+            for (QueryDocumentSnapshot doc : querySnapshot) {
+                Map<String, String> categoryMap = new HashMap<>();
+                categoryMap.put("Name", doc.getString("Name"));
+                categoryMap.put("Description", doc.getString("Description"));
+                categoryList.add(categoryMap);
+            }
+            callback.onCategoryListFetched(categoryList);
+        }).addOnFailureListener(e -> {
+            callback.onError("Failed to load categories: " + e.getMessage());
+        });
+    }
+
+    public interface CategoryListCallback {
+        void onCategoryListFetched(List<Map<String, String>> categories);
+        void onError(String error);
+    }
+
 
     public interface UserListCallback {
         void onUserListFetched(List<Map<String, String>> users);
