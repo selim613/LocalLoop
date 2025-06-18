@@ -1,6 +1,4 @@
-package com.example.localloop.firebasehelpers;
-
-import android.util.Log;
+package com.example.localloop.helpers;
 
 import com.example.localloop.entities.Admin;
 import com.example.localloop.entities.Organizer;

@@ -14,7 +14,7 @@ import com.example.localloop.entities.Participant;
 import com.example.localloop.entities.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.example.localloop.entities.Admin;
-import com.example.localloop.firebasehelpers.Firebase;
+import com.example.localloop.helpers.Firebase;
 import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {

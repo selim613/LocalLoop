@@ -1,7 +1,6 @@
 package com.example.localloop.useractivities.adminactivities.manageuseraccounts.listusersactivity;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 import android.view.View;
@@ -9,7 +8,7 @@ import androidx.core.content.ContextCompat;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.localloop.R;
-import com.example.localloop.firebasehelpers.Firebase;
+import com.example.localloop.helpers.*;
 import java.util.List;
 import java.util.Map;
 
@@ -29,9 +28,8 @@ public class ListUsersActivity extends AppCompatActivity {
                     Map<String, String> user = users.get(x);
                     // Log.d("TEST LIST", user.get("Name") + user.get("Email") + user.get("Role"));
 
+                    // *** Change name later ***
                     android.widget.TextView textViewName = new android.widget.TextView(ListUsersActivity.this);
-                    android.widget.TextView textViewEmail = new android.widget.TextView(ListUsersActivity.this);
-                    android.widget.TextView textViewRole = new android.widget.TextView(ListUsersActivity.this);
 
                     textViewName.setText("Name: " + user.get("Name") + "\nEmail: " + user.get("Email") + "\nRole: " + user.get("Role"));
                     textViewName.setTextSize(16);
@@ -49,15 +47,7 @@ public class ListUsersActivity extends AppCompatActivity {
                     userListContainer.addView(textViewRole);*/
 
                     // After every user, a divider is shown to help separate information between different users
-                    View divider = new View(ListUsersActivity.this);
-                    LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                            LinearLayout.LayoutParams.MATCH_PARENT, 2
-                    );
-
-                    params.setMargins(0, 8, 0, 8);
-                    divider.setLayoutParams(params);
-                    divider.setBackgroundColor(ContextCompat.getColor(ListUsersActivity.this, android.R.color.darker_gray));
-                    userListContainer.addView(divider);
+                    userListContainer.addView(Divider.create(ListUsersActivity.this));
                 }
             }
 

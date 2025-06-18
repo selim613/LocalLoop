@@ -7,12 +7,11 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.localloop.R;
-import com.example.localloop.firebasehelpers.Firebase;
+import com.example.localloop.helpers.Firebase;
 
 import java.util.List;
 import java.util.Map;
@@ -54,8 +53,7 @@ public class DeleteOrDisableActivity extends AppCompatActivity {
                     // If the admin clicks on one of the users, the alert dialog will pop up for confirmation that they want to delete that user
                     userView.setOnClickListener(v -> {
                         new AlertDialog.Builder(DeleteOrDisableActivity.this)
-                                .setTitle("Confirm Delete")
-                                .setMessage("Are you sure you want to delete " + name + "?")
+                                .setTitle("Confirm Delete").setMessage("Are you sure you want to delete " + name + "?")
                                 .setPositiveButton("Delete", (dialog, which) -> {
                                     Firebase.deleteUser(email, new Firebase.UserFetchCallback() {
                                         @Override
@@ -70,8 +68,7 @@ public class DeleteOrDisableActivity extends AppCompatActivity {
                                         }
                                     });
                                 })
-                                .setNegativeButton("Cancel", null)
-                                .show();
+                                .setNegativeButton("Cancel", null).show();
                     });
                     userListContainer.addView(userView);
                 }
